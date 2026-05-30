@@ -51,10 +51,10 @@ export function Skills() {
               data-testid={`skill-${s.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
             >
               <div className="flex items-start justify-between gap-4 mb-6">
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))]">
+                <span className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))]">
                   {s.area}
                 </span>
-                <span className="font-mono text-[10px] text-[hsl(var(--muted-foreground))]">
+                <span className="font-mono text-[12px] text-[hsl(var(--muted-foreground))]">
                   / {String(i + 1).padStart(2, "0")}
                 </span>
               </div>

@@ -70,7 +70,7 @@ export function Nav() {
               type="button"
               onClick={downloadResumePdf}
               data-testid="nav-download-resume"
-              className="hidden sm:inline-flex items-center gap-2 h-9 px-3 border hairline-strong font-mono text-[11px] uppercase tracking-[0.18em] hover:bg-[hsl(var(--foreground))] hover:text-[hsl(var(--background))] transition-colors"
+              className="hidden sm:inline-flex items-center gap-2 h-9 px-3 border hairline-strong font-mono text-[11px] uppercase tracking-[0.18em] hover:text-accent-signal hover:border-accent-signal transition-colors"
             >
               <Download size={13} strokeWidth={1.5} />
               <span>Resume</span>
@@ -124,7 +124,7 @@ export function Nav() {
                 className="flex items-baseline justify-between border-b hairline pb-4"
               >
                 <span className="font-display text-4xl font-bold">{n.label}</span>
-                <span className="font-mono text-[10px] opacity-50">0{i + 1}</span>
+                <span className="font-mono text-[12px] opacity-50">0{i + 1}</span>
               </a>
             ))}
             <div className="mt-auto flex flex-col gap-3">

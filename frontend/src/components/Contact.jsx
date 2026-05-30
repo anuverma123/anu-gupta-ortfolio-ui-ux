@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-import { ArrowUpRight, Mail, Linkedin, Globe, Download, Send } from "lucide-react";
+import { ArrowUpRight, Mail, Linkedin, Download, Send } from "lucide-react";
 import { profile } from "../data/portfolio";
 import { Reveal, FadeUp } from "./Reveal";
 import { downloadResumePdf } from "../lib/downloadResume";
@@ -37,7 +37,7 @@ function FloatingInput({ id, label, value, onChange, type = "text", required, mu
         htmlFor={id}
         className={`absolute left-0 font-mono uppercase tracking-[0.18em] transition-all pointer-events-none ${
           float
-            ? "top-1 text-[10px] text-accent-signal"
+            ? "top-1 text-[12px] text-accent-signal"
             : "top-7 text-xs text-[hsl(var(--muted-foreground))]"
         }`}
       >
@@ -196,28 +196,6 @@ export function Contact() {
                   </span>
                   <span className="font-display font-medium text-lg md:text-xl">
                     linkedin.com/in/anu-gupta
-                  </span>
-                </span>
-                <ArrowUpRight
-                  size={18}
-                  strokeWidth={1.5}
-                  className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"
-                />
-              </a>
-              <a
-                href={profile.portfolioUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="contact-portfolio-link"
-                className="group flex items-center justify-between gap-4 border-b hairline-strong py-4 hover:border-accent-signal transition-colors"
-              >
-                <span className="flex items-center gap-3">
-                  <Globe size={16} strokeWidth={1.5} />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))]">
-                    Portfolio
-                  </span>
-                  <span className="font-display font-medium text-lg md:text-xl">
-                    anugupta-portfolio.netlify.app
                   </span>
                 </span>
                 <ArrowUpRight

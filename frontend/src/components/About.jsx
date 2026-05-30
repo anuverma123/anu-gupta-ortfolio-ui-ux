@@ -61,7 +61,7 @@ export function About() {
                   : ""
               } ${i >= 2 ? "border-t md:border-t-0 hairline" : ""}`}
             >
-              <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-3">
+              <div className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-3">
                 {String(i + 1).padStart(2, "0")}
               </div>
               <div className="font-display font-black text-5xl md:text-6xl tracking-tighter">

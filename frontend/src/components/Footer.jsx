@@ -63,15 +63,6 @@ export function Footer() {
               LinkedIn
             </a>
             <a
-              href={profile.portfolioUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="footer-portfolio"
-              className="link-line"
-            >
-              Portfolio
-            </a>
-            <a
               href="#top"
               data-testid="footer-back-to-top"
               className="inline-flex items-center gap-2 h-9 px-3 border hairline-strong hover:bg-accent-signal hover:text-white hover:border-transparent transition-colors"

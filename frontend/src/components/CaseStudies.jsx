@@ -31,7 +31,7 @@ function CaseStudyRow({ cs, isOpen, onToggle }) {
           {cs.number}
         </span>
         <div className="flex-1 min-w-0">
-          <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-[hsl(var(--muted-foreground))] mb-2">
+          <div className="font-mono text-[12px] sm:text-[11px] uppercase tracking-[0.2em] text-[hsl(var(--muted-foreground))] mb-2">
             {cs.category}
           </div>
           <h3 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl tracking-tight leading-tight">
@@ -76,7 +76,7 @@ function CaseStudyRow({ cs, isOpen, onToggle }) {
                 {cs.tags.map((t) => (
                   <span
                     key={t}
-                    className="font-mono text-[10px] uppercase tracking-[0.18em] px-3 py-1.5 border hairline-strong"
+                    className="font-mono text-[12px] uppercase tracking-[0.18em] px-3 py-1.5 border hairline-strong"
                   >
                     {t}
                   </span>
@@ -87,7 +87,7 @@ function CaseStudyRow({ cs, isOpen, onToggle }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     data-testid={`case-live-${cs.id}`}
-                    className="ml-auto inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] px-3 py-1.5 bg-accent-signal text-white"
+                    className="ml-auto inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.18em] px-3 py-1.5 bg-accent-signal text-white"
                   >
                     Live → {cs.live.label}
                     <ArrowUpRight size={12} strokeWidth={2} />
@@ -98,13 +98,13 @@ function CaseStudyRow({ cs, isOpen, onToggle }) {
               {/* Problem / role grid */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-8 mb-12">
                 <div className="md:col-span-7">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-3">
+                  <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-3">
                     The Problem
                   </p>
                   <p className="text-base md:text-lg leading-relaxed">{cs.problem}</p>
                 </div>
                 <div className="md:col-span-5">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-3">
+                  <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-3">
                     My Role
                   </p>
                   <p className="text-base leading-relaxed">{cs.role}</p>
@@ -113,7 +113,7 @@ function CaseStudyRow({ cs, isOpen, onToggle }) {
 
               {/* Challenges */}
               <div className="mb-12">
-                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-4">
+                <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-4">
                   Key Challenges
                 </p>
                 <ul className="space-y-3">
@@ -130,7 +130,7 @@ function CaseStudyRow({ cs, isOpen, onToggle }) {
 
               {/* Process steps */}
               <div className="mb-12">
-                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-6">
+                <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-6">
                   Design Process
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border hairline">
@@ -159,7 +159,7 @@ function CaseStudyRow({ cs, isOpen, onToggle }) {
 
               {/* Decisions */}
               <div className="mb-12">
-                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-4">
+                <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-4">
                   Key Design Decisions
                 </p>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
@@ -181,7 +181,7 @@ function CaseStudyRow({ cs, isOpen, onToggle }) {
                       i > 0 ? "md:border-l hairline border-t md:border-t-0" : ""
                     }`}
                   >
-                    <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-3">
+                    <div className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-3">
                       Outcome / {String(i + 1).padStart(2, "0")}
                     </div>
                     <div className="font-display font-black text-4xl md:text-5xl tracking-tighter text-accent-signal">
@@ -200,7 +200,7 @@ function CaseStudyRow({ cs, isOpen, onToggle }) {
                   type="button"
                   onClick={onToggle}
                   data-testid={`case-close-${cs.id}`}
-                  className="inline-flex items-center gap-2 h-10 px-4 border hairline-strong font-mono text-[11px] uppercase tracking-[0.2em] hover:bg-[hsl(var(--foreground))] hover:text-[hsl(var(--background))] transition-colors"
+                  className="inline-flex items-center gap-2 h-10 px-4 border hairline-strong font-mono text-[11px] uppercase tracking-[0.2em] hover:text-accent-signal hover:border-accent-signal transition-colors"
                 >
                   Close case study <X size={13} strokeWidth={1.5} />
                 </button>

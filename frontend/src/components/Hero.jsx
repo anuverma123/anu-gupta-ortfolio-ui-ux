@@ -97,7 +97,7 @@ export function Hero() {
               <a
                 href="#contact"
                 data-testid="hero-get-in-touch"
-                className="inline-flex items-center gap-2 h-11 px-5 border hairline-strong font-mono text-[11px] uppercase tracking-[0.2em] hover:bg-[hsl(var(--foreground))] hover:text-[hsl(var(--background))] transition-colors"
+                className="inline-flex items-center gap-2 h-11 px-5 border hairline-strong font-mono text-[11px] uppercase tracking-[0.2em] hover:text-accent-signal hover:border-accent-signal transition-colors"
               >
                 Get in Touch
                 <Sparkles size={13} strokeWidth={1.5} />
@@ -120,7 +120,7 @@ export function Hero() {
                 i > 0 ? "md:border-l hairline border-t md:border-t-0" : ""
               } flex flex-col gap-2`}
             >
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))]">
+              <span className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))]">
                 0{i + 1} / Outcome
               </span>
               <div className="flex items-baseline gap-3">

@@ -41,8 +41,7 @@ export const caseStudies = [
     title: "Filejet — Entity Management Dashboard",
     summary:
       "Full dashboard UI revamp — redesigned information architecture, built a scalable component system, and eliminated 40% of task completion friction for enterprise legal and compliance users.",
-    image:
-      "https://static.prod-images.emergentagent.com/jobs/11c51330-92cc-4766-a33a-3c0354d8c2d0/images/99fa7aa7adfac5c8b159dd38966c635b5d436604ad8df5839b142a3d5f139fa5.png",
+    image: "/case-images/filejet.png",
     tags: ["Figma", "Design Systems", "Tailwind CSS", "Google Charts", "DataTables", "Enterprise UX"],
     live: { label: "filejet-redesign.vercel.app", url: "https://filejet-redesign.vercel.app" },
     problem:
@@ -83,8 +82,7 @@ export const caseStudies = [
     title: "Travog — Corporate Travel & Expense Platform",
     summary:
       "End-to-end UI/UX design for an enterprise SaaS platform covering travel booking, expense tracking, multi-level approvals, and policy management across 6 product modules.",
-    image:
-      "https://static.prod-images.emergentagent.com/jobs/11c51330-92cc-4766-a33a-3c0354d8c2d0/images/fadfe54609929046099dab15a8f0c718ed7b77f7e0519dbc5229ad7f12837708.png",
+    image: "/case-images/travog.png",
     tags: ["Figma", "Enterprise SaaS", "Responsive Design", "Design Systems", "Prototyping", "User Research"],
     live: { label: "travog.com", url: "https://travog.com" },
     problem:
@@ -125,8 +123,7 @@ export const caseStudies = [
     title: "Saudia Airlines — Feature Design & UI Consistency",
     summary:
       "Designed new product features within Saudia's established design system — maintaining premium brand standards, visual consistency, and accessibility while introducing complex new booking functionality.",
-    image:
-      "https://static.prod-images.emergentagent.com/jobs/11c51330-92cc-4766-a33a-3c0354d8c2d0/images/590df04da484b2acb66c6e4292e20ea66bdd03414e6b485d8db6472542e5d4be.png",
+    image: "/case-images/saudia.png",
     tags: ["Figma", "Design Systems", "UI Consistency", "Responsive", "WCAG AA", "Airline UX"],
     live: { label: "Figma designs — homepage, flight results, business class, passenger form", url: null },
     problem:
