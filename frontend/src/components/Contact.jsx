@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import { ArrowUpRight, Mail, Linkedin, Globe, Download, Send } from "lucide-react";
 import { profile } from "../data/portfolio";
@@ -8,6 +9,9 @@ import { downloadResumePdf } from "../lib/downloadResume";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
+const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
 
 function SectionTag({ number, label }) {
   return (
@@ -82,9 +86,37 @@ export function Contact() {
       return;
     }
     setSending(true);
+
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      reply_to: email,
+      subject: subject || "New message from portfolio",
+      message,
+      to_name: profile.name,
+    };
+
     try {
-      await axios.post(`${API}/contact`, { name, email, subject, message });
-      toast.success("Message received. I'll get back within 48 hours.");
+      // Send the email via EmailJS (primary delivery) and persist to backend
+      // in parallel so submissions are also retained server-side.
+      const results = await Promise.allSettled([
+        emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          templateParams,
+          { publicKey: EMAILJS_PUBLIC_KEY }
+        ),
+        axios.post(`${API}/contact`, { name, email, subject, message }),
+      ]);
+
+      const emailRes = results[0];
+      if (emailRes.status === "rejected") {
+        console.error("EmailJS error:", emailRes.reason);
+        toast.error("Couldn't send the email. Please email me directly.");
+        return;
+      }
+
+      toast.success("Message sent. I'll get back within 48 hours.");
       setName("");
       setEmail("");
       setSubject("");
