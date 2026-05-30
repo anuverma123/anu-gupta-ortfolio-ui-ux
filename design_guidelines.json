@@ -1,0 +1,93 @@
+{
+  "theme": "dark_and_light",
+  "archetype": "4 (Swiss & High-Contrast)",
+  "typography": {
+    "heading_font": "Cabinet Grotesk",
+    "body_font": "Satoshi",
+    "mono_font": "JetBrains Mono",
+    "font_sources": "Load Cabinet Grotesk and Satoshi from Fontshare (https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700,900&f[]=satoshi@400,500,700&display=swap). Load JetBrains Mono from Google Fonts.",
+    "hierarchy": {
+      "h1": "text-5xl sm:text-6xl tracking-tighter leading-[0.9] font-black uppercase",
+      "h2": "text-4xl sm:text-5xl tracking-tight leading-none font-bold",
+      "h3": "text-2xl sm:text-3xl tracking-tight font-medium",
+      "body_large": "text-lg md:text-xl leading-relaxed font-normal",
+      "body": "text-base leading-relaxed font-normal",
+      "overline": "text-xs sm:text-sm uppercase tracking-[0.2em] font-mono"
+    }
+  },
+  "colors": {
+    "light": {
+      "background": "#F2F2F2",
+      "surface": "#FFFFFF",
+      "text_primary": "#0D0D0D",
+      "text_secondary": "#595959",
+      "border": "rgba(13, 13, 13, 0.15)",
+      "accent": "#FF3823"
+    },
+    "dark": {
+      "background": "#0A0A0A",
+      "surface": "#121212",
+      "text_primary": "#F2F2F2",
+      "text_secondary": "#A6A6A6",
+      "border": "rgba(242, 242, 242, 0.15)",
+      "accent": "#FF3823"
+    }
+  },
+  "layout": {
+    "spacing": "Generous spacing. Use p-8, p-12, p-16 for section padding. Avoid cramped containers.",
+    "grid": "Swiss Grid (12-column). Elements should span columns asymmetrically. Create a 'border-collapse' look with visible grid lines.",
+    "radii": "rounded-none (0px) - Strict Brutalist/Swiss constraint. No soft corners.",
+    "alignment": "Strict left-alignment for text. No center-aligned paragraphs. Asymmetry over symmetry."
+  },
+  "components": {
+    "navigation": "Sticky top bar, z-50, backdrop-blur-xl with a 1px solid bottom border. Links should be monospaced and tiny (uppercase tracking-[0.2em]). Include dark/light toggle.",
+    "hero": "Editorial layout. 'Anu Gupta' in massive typography. Sub-grid for Role (UI/UX Designer) and Stats. Left-aligned, heavy contrast. Optional use of hero_texture as a masked background element.",
+    "buttons": "Rectangular, sharp corners (rounded-none). High contrast hover states (invert colors or switch to accent). Use JetBrains Mono for button text.",
+    "case_study_list": "DO NOT use standard card grids. Use full-width horizontal rows that act as accordions or expandable panels. When expanded, reveal 4-step process and metrics. Use 1px borders to separate rows.",
+    "skills_grid": "Exposed CSS grid with 1px borders between items. Monospaced typography for skill names. Tetris or bento grid style but completely sharp.",
+    "experience_timeline": "Minimalist tabular layout. Year, Role, Company in distinct columns bordered by 1px lines. No traditional dots/lines.",
+    "contact_form": "Minimal inputs. border-b only (no full box inputs). Focus state changes border-b to accent color. Floating labels."
+  },
+  "motion": {
+    "scrolling": "Lenis smooth scroll (MANDATORY for premium feel).",
+    "page_load": "Framer motion staggered text reveal (words masking up from hidden overflow).",
+    "interactions": "Hover states should be sharp, instantaneous layout changes. Smooth transitions for color. Expandable case studies should animate height smoothly."
+  },
+  "assets": {
+    "headshot": {
+      "url": "https://images.unsplash.com/photo-1506863530036-1efeddceb993?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMHByb2Zlc3Npb25hbCUyMGRlc2lnbmVyJTIwcG9ydHJhaXQlMjBoZWFkc2hvdHxlbnwwfHx8fDE3ODAxNjkzNTl8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Black and white professional portrait for the About section."
+    },
+    "hero_texture": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/11c51330-92cc-4766-a33a-3c0354d8c2d0/images/1729c1cee1592824864369ba7f2e3b7f79b6042cbb4ba622f80268b0d9428db0.png",
+      "description": "High-end minimal design manual texture. Can be used in the hero background at low opacity (10-20%) or as a visual anchor."
+    },
+    "case_studies": [
+      {
+        "id": "filejet",
+        "url": "https://static.prod-images.emergentagent.com/jobs/11c51330-92cc-4766-a33a-3c0354d8c2d0/images/99fa7aa7adfac5c8b159dd38966c635b5d436604ad8df5839b142a3d5f139fa5.png",
+        "description": "Abstract architectural UI composition for Filejet case study."
+      },
+      {
+        "id": "travog",
+        "url": "https://static.prod-images.emergentagent.com/jobs/11c51330-92cc-4766-a33a-3c0354d8c2d0/images/fadfe54609929046099dab15a8f0c718ed7b77f7e0519dbc5229ad7f12837708.png",
+        "description": "Geometric composition for Travog travel platform case study."
+      },
+      {
+        "id": "saudia",
+        "url": "https://static.prod-images.emergentagent.com/jobs/11c51330-92cc-4766-a33a-3c0354d8c2d0/images/590df04da484b2acb66c6e4292e20ea66bdd03414e6b485d8db6472542e5d4be.png",
+        "description": "High-end 3D sleek curves representing Saudia Airlines feature design."
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Install and setup 'lucide-react' for sharp icons (stroke-width: 1.5).",
+    "Install and use 'framer-motion' for all animations and staggered text reveals.",
+    "Implement 'react-lenis' for momentum scrolling.",
+    "Strictly follow the color hex codes for dark and light variables in your global CSS.",
+    "Add 'data-testid' to ALL interactive elements (buttons, links, form inputs, toggles, accordion triggers).",
+    "Avoid Shadcn 'Card' or 'Section' default wrappers. Build the layout with raw HTML + Tailwind to maintain the strict 1px bordered, sharp-cornered Swiss grid aesthetic.",
+    "Forms and Modals can use Shadcn logic, but strip away any rounded corners to match the rounded-none aesthetic.",
+    "For the case study list, build a custom expandable row (Accordion-style) rather than generic side-by-side cards."
+  ]
+}
