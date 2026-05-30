@@ -1,0 +1,41 @@
+{
+  "summary": "First-pass end-to-end testing of Anu Gupta portfolio (FastAPI backend + React frontend). 11/11 backend pytest cases pass (health, contact CRUD + validation, legacy /status, root). Frontend: all sections render, theme toggle works, contact form submits + persists to Mongo and clears + toast shows, hero/skills(9)/experience(3)/case studies all render with expected testids, mobile menu open/close works, Resume PDF download triggers without console errors. 0 console errors during the run. Fixed one minor testability issue: FadeUp component was dropping data-testid prop, which broke skill-* and experience-* selectors.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "GET /", "issue": "No bare-root route defined in server.py (only /api/ exists). Returns 200 because ingress serves frontend, but if you really want a JSON root, add an @app.get('/') route. Non-blocking."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "CaseStudies (Filejet first row)", "issue": "First click on data-testid=case-toggle-filejet immediately after programmatic scrolling to #work does NOT register as a toggle (no state change, close button never appears). Second click works reliably. Travog and Saudia toggles always work on first click. Likely Lenis smooth-scroll is intercepting the first click event on the first row. Suggest disabling Lenis briefly during click or adding pointer-events handling.", "selector": "[data-testid=case-toggle-filejet]", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "(Optional) Investigate Filejet first-click toggle race vs Lenis smooth-scroll/programmatic scroll interaction.",
+    "(Optional) Add explicit GET '/' route in backend (currently undefined; ingress masks it with frontend HTML)."
+  ],
+  "critical_code_review_comments": [
+    "FadeUp in /app/frontend/src/components/Reveal.jsx originally did not forward arbitrary props (data-testid, aria-*). This dropped any data-testid placed on FadeUp wrappers (Skills + Experience). Fixed by spreading {...rest} onto the underlying motion.div. Recommend doing the same for any future motion wrappers.",
+    "Backend server.py has no global error handler for Pydantic validation other than the FastAPI default — fine for MVP. Contact insert wraps in try/except (good). Otherwise clean, single-file backend ~133 lines, well within file-size guideline.",
+    "No GET '/' route on the FastAPI app. Only /api/ root exists. Decide whether you want JSON or HTML at the bare root."
+  ],
+  "updated_files": [
+    "/app/frontend/src/components/Reveal.jsx (FadeUp now forwards ...rest props so data-testid reaches the DOM)",
+    "/app/backend/tests/backend_test.py (new pytest suite, 11 tests)",
+    "/app/backend/tests/__init__.py (new, empty)"
+  ],
+  "success_rate": {"backend": "100% (11/11 pytest)", "frontend": "~95% (every requested flow works; only nit is Filejet first-click race)"},
+  "test_credentials": "N/A (no auth in this app)",
+  "seed_data_creation": "Two TEST_-prefixed contact rows inserted via backend tests and one via frontend form submission (subject = FE_TEST_<uuid>). Safe to leave; can be cleaned with: db.contact_messages.deleteMany({subject: /^TEST_|^FE_TEST_/}).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend regression suite lives at /app/backend/tests/backend_test.py; run with `pytest backend/tests/ -v --junitxml=/app/test_reports/pytest/pytest_results.xml`. BASE_URL is read from REACT_APP_BACKEND_URL. Frontend uses Lenis smooth scroll which can race with the very first synthetic click after a programmatic scroll — when writing playwright case-study tests, add ~1500ms wait OR click twice for the first row (Filejet). Skill cards have testids skill-figma, skill-design-systems, skill-ux-research, skill-interaction-design, skill-accessibility, skill-responsive-design, skill-ai-assisted-workflows, skill-webflow-framer, skill-html-css-js. Experience cards: experience-0/1/2. No mocked APIs.",
+  "rca of the issue": "Skill/Experience data-testid props were not reaching the DOM because FadeUp (motion wrapper in Reveal.jsx) destructured only {children, delay, className, y} and never spread the remaining props onto motion.div. Reproduced by querying [data-testid^=skill-]:not([data-testid^=skills-]) → 0 results. Fixed by accepting ...rest and spreading onto motion.div. Re-run query returns all 9 skill cards and 3 experience cards as expected."
+}
