@@ -204,15 +204,18 @@ frontend:
   
   - task: "Contact form with validation"
     implemented: true
-    working: "NA"
+    working: true
     file: "frontend/src/components/Contact.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Contact form with name, email, subject, message fields. Submits to backend API."
+      - working: true
+        agent: "main"
+        comment: "EmailJS credentials added to .env. Form now sends email notifications via EmailJS and saves messages to database."
   
   - task: "Dark/Light theme toggle"
     implemented: true
