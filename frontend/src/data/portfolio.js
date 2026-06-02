@@ -7,7 +7,7 @@ export const profile = {
   years: "4+",
   location: "Faridabad, India",
   email: "anugupta1405@gmail.com",
-  linkedin: "https://linkedin.com/in/anu-gupta",
+  linkedin: "https://linkedin.com/in/anu-gupta-921a81146",
   portfolioUrl: "https://anugupta-portfolio.netlify.app",
   available: "Available for UI UX Designer roles",
   intro:

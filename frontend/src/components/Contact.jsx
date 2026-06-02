@@ -195,7 +195,7 @@ export function Contact() {
                     LinkedIn
                   </span>
                   <span className="font-display font-medium text-lg md:text-xl">
-                    linkedin.com/in/anu-gupta
+                    linkedin.com/in/anu-gupta-921a81146
                   </span>
                 </span>
                 <ArrowUpRight
