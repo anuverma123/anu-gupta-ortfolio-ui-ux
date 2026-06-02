@@ -9,7 +9,7 @@ export const profile = {
   email: "anugupta1405@gmail.com",
   linkedin: "https://linkedin.com/in/anu-gupta",
   portfolioUrl: "https://anugupta-portfolio.netlify.app",
-  available: "Available for roles",
+  available: "Available for UI UX Designer roles",
   intro:
     "4+ years designing enterprise SaaS products — from B2B travel platforms and airline booking systems to compliance dashboards. Expert in design systems, interaction design, and cross-functional delivery.",
   longBio:

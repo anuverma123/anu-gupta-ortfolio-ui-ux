@@ -72,9 +72,7 @@ export function Hero() {
             <p className="font-display font-bold text-2xl md:text-3xl leading-tight">
               UI/UX Designer
               <span className="text-accent-signal"> — </span>
-              Enterprise SaaS,
-              Design Systems &amp;
-              Cross-functional Delivery.
+              Designing seamless, user-centered experiences that drive engagement and innovation.
             </p>
           </div>
 
