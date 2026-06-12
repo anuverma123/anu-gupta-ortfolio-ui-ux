@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Plus, Minus, ArrowUpRight, X } from "lucide-react";
+import { ArrowUpRight, FileText } from "lucide-react";
 import { caseStudies } from "../data/portfolio";
 import { Reveal, FadeUp } from "./Reveal";
 
@@ -14,207 +12,76 @@ function SectionTag({ number, label }) {
   );
 }
 
-function CaseStudyRow({ cs, isOpen, onToggle }) {
+function CaseStudyCard({ cs }) {
   return (
     <article
-      data-testid={`case-${cs.id}`}
-      className="border-t hairline last:border-b group"
+      data-testid={`case-card-${cs.id}`}
+      className="group flex flex-col border hairline-strong bg-[hsl(var(--background))] hover:border-accent-signal transition-colors duration-300"
     >
-      {/* Trigger row */}
-      <button
-        type="button"
-        onClick={onToggle}
-        data-testid={`case-toggle-${cs.id}`}
-        className="w-full text-left py-8 md:py-10 px-1 md:px-2 flex items-start gap-6 md:gap-10 hover:bg-[hsl(var(--secondary))]/60 transition-colors"
-      >
-        <span className="font-mono text-sm md:text-base text-[hsl(var(--muted-foreground))] pt-1 w-8 shrink-0">
+      {/* Image */}
+      <div className="relative aspect-[4/3] overflow-hidden bg-[hsl(var(--secondary))] border-b hairline">
+        <img
+          src={cs.image}
+          alt={cs.title}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+        />
+        <div className="absolute top-4 left-4 font-mono text-[11px] uppercase tracking-[0.2em] px-2.5 py-1 bg-[hsl(var(--background))]/90 backdrop-blur-sm border hairline">
           {cs.number}
-        </span>
-        <div className="flex-1 min-w-0">
-          <div className="font-mono text-[12px] sm:text-[11px] uppercase tracking-[0.2em] text-[hsl(var(--muted-foreground))] mb-2">
-            {cs.category}
-          </div>
-          <h3 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl tracking-tight leading-tight">
-            {cs.title}
-          </h3>
-          <p className="hidden md:block mt-3 text-base text-[hsl(var(--muted-foreground))] max-w-3xl">
-            {cs.summary}
-          </p>
         </div>
-        <div
-          className={`shrink-0 w-10 h-10 md:w-12 md:h-12 inline-flex items-center justify-center border hairline-strong transition-colors ${
-            isOpen ? "bg-accent-signal text-white border-transparent" : ""
-          }`}
-        >
-          {isOpen ? <Minus size={16} strokeWidth={1.75} /> : <Plus size={16} strokeWidth={1.75} />}
-        </div>
-      </button>
+      </div>
 
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            key="content"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.45, ease: [0.65, 0, 0.35, 1] }}
-            className="overflow-hidden"
+      {/* Content */}
+      <div className="flex flex-col flex-1 p-6 md:p-7">
+        <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-[hsl(var(--muted-foreground))] mb-3">
+          {cs.category}
+        </div>
+        <h3 className="font-display font-bold text-xl md:text-2xl tracking-tight leading-tight mb-4">
+          {cs.title}
+        </h3>
+        <p className="text-sm leading-relaxed text-[hsl(var(--muted-foreground))] mb-6 flex-1">
+          {cs.summary}
+        </p>
+
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row gap-3 mt-auto pt-2">
+          {cs.live?.url ? (
+            <a
+              href={cs.live.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid={`case-live-${cs.id}`}
+              className="flex-1 inline-flex items-center justify-center gap-2 h-11 px-4 bg-accent-signal text-white font-mono text-[11px] uppercase tracking-[0.2em] hover:opacity-90 transition-opacity"
+            >
+              Live Link
+              <ArrowUpRight size={14} strokeWidth={2} />
+            </a>
+          ) : (
+            <span
+              data-testid={`case-live-disabled-${cs.id}`}
+              className="flex-1 inline-flex items-center justify-center gap-2 h-11 px-4 bg-[hsl(var(--secondary))] text-[hsl(var(--muted-foreground))] font-mono text-[11px] uppercase tracking-[0.2em] cursor-not-allowed"
+              title="Live link not available"
+            >
+              Live Link N/A
+            </span>
+          )}
+          <a
+            href={cs.caseStudyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid={`case-study-${cs.id}`}
+            className="flex-1 inline-flex items-center justify-center gap-2 h-11 px-4 border hairline-strong font-mono text-[11px] uppercase tracking-[0.2em] hover:bg-[hsl(var(--foreground))] hover:text-[hsl(var(--background))] hover:border-[hsl(var(--foreground))] transition-colors"
           >
-            <div className="pb-12 md:pb-16 px-1 md:px-2">
-              {/* Image */}
-              <div className="border hairline aspect-[16/9] overflow-hidden mb-10 bg-[hsl(var(--secondary))]">
-                <img
-                  src={cs.image}
-                  alt={cs.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Tags + live */}
-              <div className="flex flex-wrap items-center gap-2 mb-10">
-                {cs.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="font-mono text-[12px] uppercase tracking-[0.18em] px-3 py-1.5 border hairline-strong"
-                  >
-                    {t}
-                  </span>
-                ))}
-                {cs.live?.url && (
-                  <a
-                    href={cs.live.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-testid={`case-live-${cs.id}`}
-                    className="ml-auto inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.18em] px-3 py-1.5 bg-accent-signal text-white"
-                  >
-                    Live → {cs.live.label}
-                    <ArrowUpRight size={12} strokeWidth={2} />
-                  </a>
-                )}
-              </div>
-
-              {/* Problem / role grid */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-8 mb-12">
-                <div className="md:col-span-7">
-                  <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-3">
-                    The Problem
-                  </p>
-                  <p className="text-base md:text-lg leading-relaxed">{cs.problem}</p>
-                </div>
-                <div className="md:col-span-5">
-                  <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-3">
-                    My Role
-                  </p>
-                  <p className="text-base leading-relaxed">{cs.role}</p>
-                </div>
-              </div>
-
-              {/* Challenges */}
-              <div className="mb-12">
-                <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-4">
-                  Key Challenges
-                </p>
-                <ul className="space-y-3">
-                  {cs.challenges.map((c, i) => (
-                    <li key={i} className="flex gap-4 border-b hairline pb-3">
-                      <span className="font-mono text-xs text-accent-signal pt-1 w-6 shrink-0">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="text-base leading-relaxed">{c}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Process steps */}
-              <div className="mb-12">
-                <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-6">
-                  Design Process
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border hairline">
-                  {cs.process.map((p, i) => (
-                    <div
-                      key={p.step}
-                      className={`p-6 ${
-                        i > 0
-                          ? "lg:border-l hairline border-t lg:border-t-0 sm:border-l sm:[&:nth-child(odd)]:border-l-0 lg:[&:nth-child(odd)]:border-l"
-                          : ""
-                      } ${i >= 2 ? "sm:border-t lg:border-t-0 hairline" : ""}`}
-                    >
-                      <div className="flex items-baseline gap-3 mb-3">
-                        <span className="font-mono text-xs text-[hsl(var(--muted-foreground))]">
-                          {p.step}
-                        </span>
-                        <span className="font-display font-bold text-lg">{p.title}</span>
-                      </div>
-                      <p className="text-sm leading-relaxed text-[hsl(var(--muted-foreground))]">
-                        {p.body}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Decisions */}
-              <div className="mb-12">
-                <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-4">
-                  Key Design Decisions
-                </p>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
-                  {cs.decisions.map((d, i) => (
-                    <li key={i} className="flex gap-3 border-b hairline pb-3">
-                      <span className="text-accent-signal pt-1">→</span>
-                      <span className="text-sm md:text-base leading-relaxed">{d}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Outcomes */}
-              <div className="border-t border-b hairline-strong grid grid-cols-1 md:grid-cols-3">
-                {cs.outcomes.map((o, i) => (
-                  <div
-                    key={o.label}
-                    className={`p-6 md:p-8 ${
-                      i > 0 ? "md:border-l hairline border-t md:border-t-0" : ""
-                    }`}
-                  >
-                    <div className="font-mono text-[12px] uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))] mb-3">
-                      Outcome / {String(i + 1).padStart(2, "0")}
-                    </div>
-                    <div className="font-display font-black text-4xl md:text-5xl tracking-tighter text-accent-signal">
-                      {o.value}
-                    </div>
-                    <div className="mt-2 text-sm text-[hsl(var(--muted-foreground))]">
-                      {o.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Close trigger */}
-              <div className="mt-10 flex justify-end">
-                <button
-                  type="button"
-                  onClick={onToggle}
-                  data-testid={`case-close-${cs.id}`}
-                  className="inline-flex items-center gap-2 h-10 px-4 border hairline-strong font-mono text-[11px] uppercase tracking-[0.2em] hover:text-accent-signal hover:border-accent-signal transition-colors"
-                >
-                  Close case study <X size={13} strokeWidth={1.5} />
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            Case Study
+            <FileText size={13} strokeWidth={1.75} />
+          </a>
+        </div>
+      </div>
     </article>
   );
 }
 
 export function CaseStudies() {
-  const [openId, setOpenId] = useState("filejet");
   return (
     <section
       id="work"
@@ -223,7 +90,7 @@ export function CaseStudies() {
     >
       <div className="max-w-[1440px] mx-auto px-6 md:px-10">
         <SectionTag number="02 —" label="Selected Work" />
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-8 mb-12 md:mb-16">
           <h2
             data-testid="work-heading"
             className="md:col-span-7 font-display font-black uppercase tracking-tighter leading-[0.9] text-5xl sm:text-6xl md:text-7xl"
@@ -235,20 +102,15 @@ export function CaseStudies() {
           <FadeUp className="md:col-span-5 md:pt-6">
             <p className="text-base md:text-lg leading-relaxed text-[hsl(var(--muted-foreground))]">
               Three deep dives — from enterprise legal dashboards to corporate
-              travel platforms and premium airline systems. Tap any row to
-              unfold the process, decisions, and measured outcomes.
+              travel platforms and premium airline systems. Tap any card to
+              explore the full case study or visit the live product.
             </p>
           </FadeUp>
         </div>
 
-        <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {caseStudies.map((cs) => (
-            <CaseStudyRow
-              key={cs.id}
-              cs={cs}
-              isOpen={openId === cs.id}
-              onToggle={() => setOpenId(openId === cs.id ? null : cs.id)}
-            />
+            <CaseStudyCard key={cs.id} cs={cs} />
           ))}
         </div>
       </div>

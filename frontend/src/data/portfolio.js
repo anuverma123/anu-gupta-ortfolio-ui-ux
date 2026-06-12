@@ -44,6 +44,7 @@ export const caseStudies = [
     image: "/case-images/filejet.png",
     tags: ["Figma", "Design Systems", "Tailwind CSS", "Google Charts", "DataTables", "Enterprise UX"],
     live: { label: "filejet-redesign.vercel.app", url: "https://filejet-redesign.vercel.app" },
+    caseStudyUrl: "/case-studies/filejet.html",
     problem:
       "Enterprise legal and compliance teams managing hundreds of entities were losing time to poor information hierarchy and navigation dead-ends. Critical filing deadlines were buried in unfiltered data tables. The UI hadn't been updated in years and failed entirely on mobile.",
     role:
@@ -85,6 +86,7 @@ export const caseStudies = [
     image: "/case-images/travog.png",
     tags: ["Figma", "Enterprise SaaS", "Responsive Design", "Design Systems", "Prototyping", "User Research"],
     live: { label: "travog.com", url: "https://travog.com" },
+    caseStudyUrl: "/case-studies/travog.html",
     problem:
       "Enterprise employees juggled disconnected tools for travel booking, expense submissions, and multi-level approvals — causing high error rates, approval bottlenecks, and low adoption. Finance teams had no real-time visibility into spend.",
     role:
@@ -126,6 +128,7 @@ export const caseStudies = [
     image: "/case-images/saudia.png",
     tags: ["Figma", "Design Systems", "UI Consistency", "Responsive", "WCAG AA", "Airline UX"],
     live: { label: "Figma designs — homepage, flight results, business class, passenger form", url: null },
+    caseStudyUrl: "/case-studies/saudia.html",
     problem:
       "Working within a premium client's established design system requires a fundamentally different discipline than building from scratch. Every new screen and component had to feel native to Saudia's existing product — communicating the same trust and premium hospitality their brand is built on — while introducing entirely new booking functionality.",
     role:
