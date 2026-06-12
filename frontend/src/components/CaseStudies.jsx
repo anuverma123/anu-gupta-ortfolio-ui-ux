@@ -45,7 +45,7 @@ function CaseStudyCard({ cs }) {
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 mt-auto pt-2">
-          {cs.live?.url ? (
+          {cs.live?.url && (
             <a
               href={cs.live.url}
               target="_blank"
@@ -56,14 +56,6 @@ function CaseStudyCard({ cs }) {
               Live Link
               <ArrowUpRight size={14} strokeWidth={2} />
             </a>
-          ) : (
-            <span
-              data-testid={`case-live-disabled-${cs.id}`}
-              className="flex-1 inline-flex items-center justify-center gap-2 h-11 px-4 bg-[hsl(var(--secondary))] text-[hsl(var(--muted-foreground))] font-mono text-[11px] uppercase tracking-[0.2em] cursor-not-allowed"
-              title="Live link not available"
-            >
-              Live Link N/A
-            </span>
           )}
           <a
             href={cs.caseStudyUrl}
